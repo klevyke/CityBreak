@@ -8,6 +8,15 @@ public class Restaurants extends Place {
     private Hours openHours;
     private int restaurantRating;
 
+    /**
+     * Constructor for Restaurant object
+     * @param name name of the place
+     * @param description description of the place
+     * @param placeImageId image resource id of the image from the place
+     * @param contactInfo Contact object with contact data
+     * @param openHours Hours object containing the restaurants hours
+     * @param rating Restaurants rating
+     */
     public Restaurants(String name, String description, int placeImageId, Contact contactInfo, Hours openHours, int rating) {
         super(name, description, placeImageId, contactInfo);
         this.openHours = openHours;
