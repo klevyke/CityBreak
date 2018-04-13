@@ -40,16 +40,17 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         Restaurant currentRestaurant = getItem(position);
 
         // Set the name TextView
-        TextView name = listItemView.findViewById(R.id.name);
+        TextView name = (TextView) listItemView.findViewById(R.id.name);
         name.setText(currentRestaurant.getPlaceName());
 
         // Set the description TextView
-        TextView description = listItemView.findViewById(R.id.description);
+        TextView description = (TextView) listItemView.findViewById(R.id.description);
         description.setText(currentRestaurant.getPlaceDescription());
 
         // Set the image
-        ImageView image = listItemView.findViewById(R.id.image);
+        ImageView image = (ImageView) listItemView.findViewById(R.id.image);
         image.setImageResource(currentRestaurant.getPlaceImageId());
+        image.setVisibility(View.VISIBLE);
 
         return listItemView;
     }

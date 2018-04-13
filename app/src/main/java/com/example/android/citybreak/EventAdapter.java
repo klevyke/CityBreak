@@ -50,6 +50,7 @@ public class EventAdapter extends ArrayAdapter<Event> {
         // Set the image
         ImageView image = listItemView.findViewById(R.id.image);
         image.setImageResource(currentRestaurant.getPlaceImageId());
+        image.setVisibility(View.VISIBLE);
 
         return listItemView;
     }

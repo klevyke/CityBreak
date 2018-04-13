@@ -16,13 +16,14 @@ public class Place {
      * Constructor for Place object
      * @param name name of the place
      * @param description description of the place
-     * @param placeImageId image resource id of the image from the place
+     * @param imageId image resource id of the image from the place
      * @param contactInfo contact data
      */
-    public Place (String name, String description, int placeImageId, Contact contactInfo ) {
+    public Place (String name, String description, int imageId, Contact contactInfo ) {
         placeName = name;
         placeDescription = description;
         placeContactInfo = contactInfo;
+        placeImageId = imageId;
     }
 
     public String getPlaceName() {
