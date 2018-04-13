@@ -2,12 +2,15 @@ package com.example.android.citybreak;
 
 import android.icu.util.DateInterval;
 
+import java.util.Date;
+
 /**
  * Created by Levy on 12.04.2018.
  */
 
 public class Event extends Place {
-    DateInterval eventDate;
+    private Date eventStartDate;
+    private Date eventEndDate;
 
     /**
      * Constructor for the Events object
@@ -15,15 +18,20 @@ public class Event extends Place {
      * @param description
      * @param placeImageId
      * @param contactInfo
-     * @param eventDate
+     * @param eventStartDate
+     * @param eventEndDate
      */
-    public Event(String name, String description, int placeImageId, Contact contactInfo, DateInterval eventDate) {
+    public Event(String name, String description, int placeImageId, Contact contactInfo, Date eventStartDate, Date eventEndDate) {
         super(name, description, placeImageId, contactInfo);
-        this.eventDate = eventDate;
+        this.eventStartDate = eventStartDate;
+        this.eventEndDate = eventEndDate;
     }
 
-    // Get the event dat in string format
-    public String getEventDate() {
-        return eventDate.toString();
+    public Date getEventStartdate() {
+        return eventStartDate;
+    }
+
+    public Date getEventEnddate() {
+        return eventEndDate;
     }
 }

@@ -21,13 +21,13 @@ public class CategoryAdapter extends FragmentPagerAdapter {
          if (position == 0) {
             return new AboutFragment();
         } else if (position == 1){
-           return new AttractionFragment();
+           return new AttractionsFragment();
         } else if (position == 2){
-            return new AboutFragment();
+            return new RestaurantsFragment();
         } else if (position == 3){
-            return new AboutFragment();
+            return new EventsFragment();
         } else {
-            return new AboutFragment();
+            return new KilltimeFragment();
         }
     }
 
