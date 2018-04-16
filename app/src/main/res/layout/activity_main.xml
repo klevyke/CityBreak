@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.citybreak.MainActivity">
+    android:orientation="horizontal" >
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
+    <fragment
+        android:id="@+id/listFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        class="com.example.android.citybreak.ListFragment" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
+    <fragment
+        android:id="@+id/detailFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/normal_margin"
-        app:layout_constraintTop_toBottomOf="@+id/tabs" />
+        android:layout_height="match_parent"
+        class="com.example.android.citybreak.DetailsFragment" >
+        <!-- Preview: layout=@layout/details -->
+    </fragment>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
+
