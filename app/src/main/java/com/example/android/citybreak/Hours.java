@@ -1,12 +1,15 @@
 package com.example.android.citybreak;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.sql.Time;
 
 /**
  * Created by Levy on 12.04.2018.
  */
 
-public class Hours {
+public class Hours implements Parcelable {
     private int openHour;
     private int openMinute;
     private int closingHour;
@@ -29,4 +32,39 @@ public class Hours {
     public String getHoursString () {
         return openHour+":"+openMinute+" - "+closingHour+":"+closingMinute;
     }
+
+    // Parcelable implementation generated on parcelablr.com
+
+    protected Hours(Parcel in) {
+        openHour = in.readInt();
+        openMinute = in.readInt();
+        closingHour = in.readInt();
+        closingMinute = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(openHour);
+        dest.writeInt(openMinute);
+        dest.writeInt(closingHour);
+        dest.writeInt(closingMinute);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Hours> CREATOR = new Parcelable.Creator<Hours>() {
+        @Override
+        public Hours createFromParcel(Parcel in) {
+            return new Hours(in);
+        }
+
+        @Override
+        public Hours[] newArray(int size) {
+            return new Hours[size];
+        }
+    };
 }

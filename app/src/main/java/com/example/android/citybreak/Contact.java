@@ -1,10 +1,13 @@
 package com.example.android.citybreak;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Levy on 12.04.2018.
  */
 
-public class Contact {
+public class Contact implements Parcelable {
     private String contactAddress;
     private String contactPhone;
     private String contactWeb;
@@ -67,5 +70,48 @@ public class Contact {
         return contactWebSet;
     }
 
+    protected Contact(Parcel in) {
+        contactAddress = in.readString();
+        contactPhone = in.readString();
+        contactWeb = in.readString();
+        byte contactPhoneSetVal = in.readByte();
+        contactPhoneSet = contactPhoneSetVal == 0x02 ? null : contactPhoneSetVal != 0x00;
+        byte contactWebSetVal = in.readByte();
+        contactWebSet = contactWebSetVal == 0x02 ? null : contactWebSetVal != 0x00;
+    }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(contactAddress);
+        dest.writeString(contactPhone);
+        dest.writeString(contactWeb);
+        if (contactPhoneSet == null) {
+            dest.writeByte((byte) (0x02));
+        } else {
+            dest.writeByte((byte) (contactPhoneSet ? 0x01 : 0x00));
+        }
+        if (contactWebSet == null) {
+            dest.writeByte((byte) (0x02));
+        } else {
+            dest.writeByte((byte) (contactWebSet ? 0x01 : 0x00));
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Contact> CREATOR = new Parcelable.Creator<Contact>() {
+        @Override
+        public Contact createFromParcel(Parcel in) {
+            return new Contact(in);
+        }
+
+        @Override
+        public Contact[] newArray(int size) {
+            return new Contact[size];
+        }
+    };
 }
