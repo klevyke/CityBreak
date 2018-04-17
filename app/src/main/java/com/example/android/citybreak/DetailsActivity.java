@@ -56,6 +56,12 @@ public class DetailsActivity extends AppCompatActivity {
             }
         }
 
+        String type = extras.getString("type");
+
+        if ( type != null) {
+            addInTextView(generalSection, "Type:", type);
+        }
+
         Contact contactInfo = extras.getParcelable("contact");
         LinearLayout contactSection = findViewById(R.id.contact);
 
