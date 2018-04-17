@@ -52,7 +52,7 @@ public class Contact implements Parcelable {
         return contactAddress;
     }
     // Get the phone number
-    public String getPlaceTelephone() {
+    public String getPlacePhone() {
         return contactPhone;
     }
     // Get the web address

@@ -36,7 +36,7 @@ public class RestaurantsFragment extends Fragment {
         final ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
 
         // Data from https://www.facebook.com/restaurantlivada/
-        restaurants.add(new Restaurant("Livada","Beautyfull restaurant with tree garden in the old town of the city", R.drawable.livada, new Contact("Clinici street 6"), new Hours(10,00,23,00), 4.80));
+        restaurants.add(new Restaurant("Livada","Beautiful restaurant with tree garden in the old town of the city", R.drawable.livada, new Contact("Clinici street 6","026458554545", "livada.ro"), new Hours(10,00,23,00), 4.80));
 
         // Create the adapter for attractions
         RestaurantAdapter itemsAdapter = new RestaurantAdapter(getActivity(), restaurants);
@@ -64,6 +64,8 @@ public class RestaurantsFragment extends Fragment {
                                                 intent.putExtra("name", restaurant.getPlaceName());
                                                 intent.putExtra("description", restaurant.getPlaceDescription());
                                                 intent.putExtra("image", restaurant.getPlaceImageId());
+                                                intent.putExtra("contact", restaurant.getPlaceContactInfo());
+                                                intent.putExtra("hours", restaurant.getOpenHours());
                                                 startActivity(intent);
                                             }
                                         }
