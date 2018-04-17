@@ -58,7 +58,6 @@ public class RestaurantsFragment extends Fragment {
                     TextView name = (TextView) fragment.getView().findViewById(R.id.name);
                     name.setText(restaurant.getPlaceName());
                 } else {
-                    Log.v("Fragment", "Fragment not visible");
                     Intent intent = new Intent(getActivity().getApplicationContext(),
                             DetailsActivity.class);
                     intent.putExtra("name", restaurant.getPlaceName());

@@ -33,7 +33,7 @@ public class ListFragment extends Fragment {
         ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
 
         // Create an adapter that knows which fragment should be shown on each page
-        CategoryAdapter adapter = new CategoryAdapter(getActivity().getSupportFragmentManager());
+        CategoryAdapter adapter = new CategoryAdapter(getActivity().getSupportFragmentManager(), rootView.getContext());
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);

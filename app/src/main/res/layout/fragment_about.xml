@@ -12,16 +12,17 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/main_image_description"
             android:scaleType="centerCrop"
             android:src="@drawable/clujmain" />
 
         <TextView
             android:id="@+id/title"
+            style="@style/title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/normal_margin"
-            android:text="@string/cluj_napoca"
-            style="@style/title"/>
+            android:text="@string/cluj_napoca" />
 
         <TextView
             android:id="@+id/about"
