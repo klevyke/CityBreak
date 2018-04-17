@@ -1,6 +1,7 @@
 package com.example.android.citybreak;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class DetailsActivity extends AppCompatActivity {
 
     @Override
@@ -21,7 +27,8 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
         // Get the data from the other activity
-        Bundle extras = getIntent().getExtras();
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
 
         // Set the image resource
         ImageView image = findViewById(R.id.image);
@@ -34,29 +41,45 @@ public class DetailsActivity extends AppCompatActivity {
         TextView description = findViewById(R.id.description);
         description.setText(extras.getString("description"));
 
-        Contact contactInfo = extras.getParcelable("contact");
-        LinearLayout parent = findViewById(R.id.contact);
+        Date eventStartDate = (Date) intent.getSerializableExtra("eventStart");
+        Date eventEndDate = (Date) intent.getSerializableExtra("eventEnd");
 
-        addInTextView(parent, "Address:",contactInfo.getPlaceAddress());
+        LinearLayout generalSection = findViewById(R.id.general);
+
+        if ( eventStartDate != null && eventEndDate!= null) {
+            if (eventStartDate == eventEndDate) {
+                String text = formatedDate(eventStartDate);
+                addInTextView(generalSection, "Date:", text);
+            } else {
+                String text = formatedDate(eventStartDate)+" - "+formatedDate(eventEndDate);
+                addInTextView(generalSection, "Date:", text);
+            }
+        }
+
+        Contact contactInfo = extras.getParcelable("contact");
+        LinearLayout contactSection = findViewById(R.id.contact);
+
+        addInTextView(contactSection, "Address:",contactInfo.getPlaceAddress());
 
         if (contactInfo.hasPhoneSet()) {
-            addInTextView(parent, "Phone:",contactInfo.getPlacePhone());
+            addInTextView(contactSection, "Phone:",contactInfo.getPlacePhone());
         }
         if (contactInfo.hasWebSet()) {
-            addInTextView(parent, "Web:",contactInfo.getPlaceWeb());
+            addInTextView(contactSection, "Web:",contactInfo.getPlaceWeb());
         }
 
         Hours hours = extras.getParcelable("hours");
 
         if ( hours != null) {
-            addInTextView(parent, "Hours:", hours.getHoursString());
+            addInTextView(contactSection, "Hours:", hours.getHoursString());
         }
 
         String attractionStory = extras.getString("story");
 
         if ( attractionStory != null) {
-            addInTextView(parent, "\n\nThe story of this attraction: \n\n", attractionStory);
+            addInTextView(contactSection, "\n\nThe story of this attraction: \n\n", attractionStory);
         }
+
     }
 
     public void addInTextView(ViewGroup parent, String label, String text) {
@@ -64,5 +87,11 @@ public class DetailsActivity extends AppCompatActivity {
         TextView textView = new TextView(this);
         textView.setText(label+" "+text);
         parent.addView(textView);
+    }
+
+    public String formatedDate(Date date) {
+        Date mDate = null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        return dateFormat.format(date);
     }
 }

@@ -27,11 +27,12 @@ public class Event extends Place {
         this.eventEndDate = eventEndDate;
     }
 
-    public Date getEventStartdate() {
+    public Date getEventStartDate() {
         return eventStartDate;
     }
 
-    public Date getEventEnddate() {
+    public Date getEventEndDate() {
         return eventEndDate;
     }
+
 }

@@ -31,7 +31,7 @@ public class AttractionsFragment extends Fragment {
 
         // Create the ArrayList of attractions
         final ArrayList<Attraction> attractions = new ArrayList<Attraction>();
-        attractions.add(new Attraction("Mathias Rex Satue","This classified historic monument, conceived by János Fadrusz and opened in 1902, represents Matthias Corvinus.", R.drawable.matyaskiraly, new Contact("Unirii street 1"), "Story of the attraction" ));
+        attractions.add(new Attraction("Mathias Rex Satue", "This classified historic monument, conceived by János Fadrusz and opened in 1902, represents Matthias Corvinus.", R.drawable.matyaskiraly, new Contact("Unirii street 1"), "Story of the attraction"));
 
         // Create the adapter for attractions
         AttractionAdapter itemsAdapter = new AttractionAdapter(getActivity(), attractions);
@@ -72,15 +72,16 @@ public class AttractionsFragment extends Fragment {
 
     /**
      * Check if it must be displayed  in split screen
+     *
      * @param context
      */
     private Boolean showInSplitScreen(View context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        if  (dpWidth>1000) {
+        if (dpWidth > 1000) {
             return true;
         } else {
-            return  false;
+            return false;
         }
     }
 }

@@ -36,7 +36,7 @@ public class RestaurantsFragment extends Fragment {
         final ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
 
         // Data from https://www.facebook.com/restaurantlivada/
-        restaurants.add(new Restaurant("Livada","Beautiful restaurant with tree garden in the old town of the city", R.drawable.livada, new Contact("Clinici street 6","026458554545", "livada.ro"), new Hours(10,00,23,00), 4.80));
+        restaurants.add(new Restaurant("Livada", "Beautiful restaurant with tree garden in the old town of the city", R.drawable.livada, new Contact("Clinici street 6", "026458554545", "livada.ro"), new Hours(10, 00, 23, 00), 4.80));
 
         // Create the adapter for attractions
         RestaurantAdapter itemsAdapter = new RestaurantAdapter(getActivity(), restaurants);
@@ -49,27 +49,27 @@ public class RestaurantsFragment extends Fragment {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                                        @Override
-                                        public void onItemClick(AdapterView parent, View view, int position, long id) {
-                                            RestaurantAdapter restaurantAdapter = (RestaurantAdapter) parent.getAdapter();
-                                            Restaurant restaurant = restaurantAdapter.getItem(position);
-                                            DetailsFragment fragment = (DetailsFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.detailFragment);
-                                            if (fragment != null && showInSplitScreen(parent.getRootView())) {
-                                                TextView name = (TextView) fragment.getView().findViewById(R.id.name);
-                                                name.setText(restaurant.getPlaceName());
-                                            } else {
-                                                Log.v("Fragment", "Fragment not visible");
-                                                Intent intent = new Intent(getActivity().getApplicationContext(),
-                                                        DetailsActivity.class);
-                                                intent.putExtra("name", restaurant.getPlaceName());
-                                                intent.putExtra("description", restaurant.getPlaceDescription());
-                                                intent.putExtra("image", restaurant.getPlaceImageId());
-                                                intent.putExtra("contact", restaurant.getPlaceContactInfo());
-                                                intent.putExtra("hours", restaurant.getOpenHours());
-                                                startActivity(intent);
-                                            }
-                                        }
-                                    });
+            @Override
+            public void onItemClick(AdapterView parent, View view, int position, long id) {
+                RestaurantAdapter restaurantAdapter = (RestaurantAdapter) parent.getAdapter();
+                Restaurant restaurant = restaurantAdapter.getItem(position);
+                DetailsFragment fragment = (DetailsFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.detailFragment);
+                if (fragment != null && showInSplitScreen(parent.getRootView())) {
+                    TextView name = (TextView) fragment.getView().findViewById(R.id.name);
+                    name.setText(restaurant.getPlaceName());
+                } else {
+                    Log.v("Fragment", "Fragment not visible");
+                    Intent intent = new Intent(getActivity().getApplicationContext(),
+                            DetailsActivity.class);
+                    intent.putExtra("name", restaurant.getPlaceName());
+                    intent.putExtra("description", restaurant.getPlaceDescription());
+                    intent.putExtra("image", restaurant.getPlaceImageId());
+                    intent.putExtra("contact", restaurant.getPlaceContactInfo());
+                    intent.putExtra("hours", restaurant.getOpenHours());
+                    startActivity(intent);
+                }
+            }
+        });
 
 
         // Return the View
@@ -78,15 +78,16 @@ public class RestaurantsFragment extends Fragment {
 
     /**
      * Check if it must be displayed  in split screen
+     *
      * @param context
      */
     private Boolean showInSplitScreen(View context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        if  (dpWidth>1000) {
+        if (dpWidth > 1000) {
             return true;
         } else {
-            return  false;
+            return false;
         }
     }
 

@@ -24,18 +24,25 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/name"
-                style="@style/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/description"
+            <LinearLayout
+                android:id="@+id/general"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/normal_margin"
-                android:layout_marginTop="@dimen/small_margin" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name"
+                    style="@style/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/normal_margin"
+                    android:layout_marginTop="@dimen/small_margin" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/contact"
@@ -47,6 +54,8 @@
                     android:id="@+id/contact_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:layout_marginBottom="@dimen/small_margin"
                     android:text="@string/contact_header"
                     android:textAppearance="@style/header" />
 
