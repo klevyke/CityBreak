@@ -33,7 +33,7 @@ public class KilltimeAdapter extends ArrayAdapter<Killtime> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.attraction_item, parent, false);
+                    R.layout.list_item, parent, false);
         }
 
         // Get the current Attraction object

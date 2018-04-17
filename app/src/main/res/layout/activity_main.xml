@@ -2,13 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <fragment
         android:id="@+id/listFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize"
         class="com.example.android.citybreak.ListFragment" />
 
     <fragment
@@ -16,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         class="com.example.android.citybreak.DetailsFragment" >
-        <!-- Preview: layout=@layout/details -->
+
     </fragment>
 
 </LinearLayout>
