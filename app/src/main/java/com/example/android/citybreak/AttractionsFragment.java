@@ -1,11 +1,16 @@
 package com.example.android.citybreak;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -34,6 +39,30 @@ public class AttractionsFragment extends Fragment {
         // Get the listview to pe populated
         final ListView listView = (ListView) rootView.findViewById(R.id.list);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView parent, View view, int position, long id) {
+                AttractionAdapter attractionAdapter = (AttractionAdapter) parent.getAdapter();
+                Attraction attraction = attractionAdapter.getItem(position);
+                DetailsFragment fragment = (DetailsFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.detailFragment);
+                if (fragment != null && showInSplitScreen(parent.getRootView())) {
+                    TextView name = (TextView) fragment.getView().findViewById(R.id.name);
+                    name.setText(attraction.getPlaceName());
+                } else {
+                    Log.v("Fragment", "Fragment not visible");
+                    Intent intent = new Intent(getActivity().getApplicationContext(),
+                            DetailsActivity.class);
+                    intent.putExtra("name", attraction.getPlaceName());
+                    intent.putExtra("description", attraction.getPlaceDescription());
+                    intent.putExtra("image", attraction.getPlaceImageId());
+                    intent.putExtra("contact", attraction.getPlaceContactInfo());
+                    intent.putExtra("story", attraction.getAttractionStory());
+                    startActivity(intent);
+                }
+            }
+        });
+
         // Populate the list using the adapter created
         listView.setAdapter(itemsAdapter);
 
@@ -41,4 +70,17 @@ public class AttractionsFragment extends Fragment {
         return rootView;
     }
 
+    /**
+     * Check if it must be displayed  in split screen
+     * @param context
+     */
+    private Boolean showInSplitScreen(View context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        if  (dpWidth>1000) {
+            return true;
+        } else {
+            return  false;
+        }
+    }
 }

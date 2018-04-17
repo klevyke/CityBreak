@@ -51,6 +51,12 @@ public class DetailsActivity extends AppCompatActivity {
         if ( hours != null) {
             addInTextView(parent, "Hours:", hours.getHoursString());
         }
+
+        String attractionStory = extras.getString("story");
+
+        if ( attractionStory != null) {
+            addInTextView(parent, "\n\nThe story of this attraction: \n\n", attractionStory);
+        }
     }
 
     public void addInTextView(ViewGroup parent, String label, String text) {
