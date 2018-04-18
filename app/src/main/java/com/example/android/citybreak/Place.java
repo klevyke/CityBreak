@@ -7,10 +7,10 @@ import android.location.Address;
  */
 
 public class Place {
-    String placeName;
-    String placeDescription;
-    int placeImageId;
-    Contact placeContactInfo;
+    private String placeName;
+    private String placeDescription;
+    private int placeImageId;
+    private Contact placeContactInfo;
 
     /**
      * Constructor for Place object
