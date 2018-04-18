@@ -49,7 +49,7 @@ public class RestaurantsFragment extends Fragment {
         // source: https://www.facebook.com/BerariaKlausenBurger/
         restaurants.add(new Restaurant("Klausen Burger", "Roof-top restaurant serving good food and craft beer.", R.drawable.klausenburger, new Contact("Ferdinand street 22", "+4 0372 717 552", "facebook.com/BerariaKlausenBurger/"), new Hours(10, 0, 2, 0), 4.40));
         // source: facebook.com/1568Bistro/
-        restaurants.add(new Restaurant("Bistro 1568", "A mix of traditional romanian, hungarian, saxon, jewish and armenian food.", R.drawable.rhedey, new Contact("14 B-dul 21 Decembrie 1989", "+4 0770 163 152", "facebook.com/1568Bistro/"), new Hours(10, 0, 2, 0), 4.40));
+        restaurants.add(new Restaurant("Bistro 1568", "A mix of traditional romanian, hungarian, saxon, jewish and armenian food.", R.drawable.bistro1568, new Contact("14 B-dul 21 Decembrie 1989", "+4 0770 163 152", "facebook.com/1568Bistro/"), new Hours(10, 0, 2, 0), 4.40));
 
         // Create the adapter for attractions
         RestaurantAdapter itemsAdapter = new RestaurantAdapter(getActivity(), restaurants);
@@ -141,11 +141,4 @@ public class RestaurantsFragment extends Fragment {
         textView.setText(label+" "+text);
         parent.addView(textView);
     }
-
-    public String formatedDate(Date date) {
-        Date mDate = null;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
-        return dateFormat.format(date);
-    }
-
 }

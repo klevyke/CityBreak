@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,7 +33,7 @@ public class AttractionsFragment extends Fragment {
 
         // Create the ArrayList of attractions
         final ArrayList<Attraction> attractions = new ArrayList<Attraction>();
-        attractions.add(new Attraction("Mathias Rex Satue", "This classified historic monument, conceived by János Fadrusz and opened in 1902, represents Matthias Corvinus.", R.drawable.matyaskiraly, new Contact("Unirii street 1"), "Story of the attraction"));
+        attractions.add(new Attraction("Mathias Rex Satue", "This classified historic monument, conceived by János Fadrusz and opened in 1902, represents Matthias Corvinus.", R.drawable.matyaskiraly, new Contact("Unirii street 1"), "This is a long story of this attraction started in ancient days."));
 
         // Create the adapter for attractions
         AttractionAdapter itemsAdapter = new AttractionAdapter(getActivity(), attractions);
@@ -47,8 +49,37 @@ public class AttractionsFragment extends Fragment {
                 Attraction attraction = attractionAdapter.getItem(position);
                 DetailsFragment fragment = (DetailsFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.detailFragment);
                 if (fragment != null && showInSplitScreen(parent.getRootView())) {
+                    // Inflate the layout for this fragment
+                    // View rootView = fragment.getLayoutInflater().inflate(R.layout.activity_details, fragment.getView(), false);
+
+                    ImageView image = fragment.getView().findViewById(R.id.image);
+                    image.setImageResource(attraction.getPlaceImageId());
+                    image.setVisibility(View.VISIBLE);
+
                     TextView name = (TextView) fragment.getView().findViewById(R.id.name);
                     name.setText(attraction.getPlaceName());
+
+                    TextView description = fragment.getView().findViewById(R.id.description);
+                    description.setText(attraction.getPlaceDescription());
+
+                    Contact contactInfo = attraction.getPlaceContactInfo();
+                    LinearLayout contactSection = fragment.getView().findViewById(R.id.contact);
+                    contactSection.removeAllViewsInLayout();
+
+                    TextView title =  fragment.getView().findViewById(R.id.contact_header);
+                    title.setVisibility(View.VISIBLE);
+
+                    addInTextView(contactSection, "Address:",contactInfo.getPlaceAddress());
+
+                    if (contactInfo.hasPhoneSet()) {
+                        addInTextView(contactSection, "Phone:",contactInfo.getPlacePhone());
+                    }
+                    if (contactInfo.hasWebSet()) {
+                        addInTextView(contactSection, "Web:",contactInfo.getPlaceWeb());
+                    }
+
+                    addInTextView(contactSection, "\n\nThe story of the place:\n\n",attraction.getAttractionStory());
+
                 } else {
                     Intent intent = new Intent(getActivity().getApplicationContext(),
                             DetailsActivity.class);
@@ -83,4 +114,12 @@ public class AttractionsFragment extends Fragment {
             return false;
         }
     }
+
+    public void addInTextView(ViewGroup parent, String label, String text) {
+        //LinearLayout.LayoutParams attributes = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        TextView textView = new TextView(getContext());
+        textView.setText(label+" "+text);
+        parent.addView(textView);
+    }
+
 }

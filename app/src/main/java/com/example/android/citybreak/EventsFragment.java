@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,7 +39,7 @@ public class EventsFragment extends Fragment {
 
         // Create the ArrayList of events
         final ArrayList<Event> events = new ArrayList<Event>();
-        // Data from https://www.facebook.com/restaurantlivada/
+        // Data from https://www.facebook.com/eventlivada/
         events.add(new Event("Untold","Biggest music festival in Central/Easter Europe with various type of electronic music.", R.drawable.livada, new Contact("Central Park - Cluj Arena"), dateFromString("2018.08.02"), dateFromString("2018.08.05")));
 
         // Create the adapter for events
@@ -57,8 +59,51 @@ public class EventsFragment extends Fragment {
                 Event event = eventAdapter.getItem(position);
                 DetailsFragment fragment = (DetailsFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.detailFragment);
                 if (fragment != null && showInSplitScreen(parent.getRootView())) {
+                    // Inflate the layout for this fragment
+                    // View rootView = fragment.getLayoutInflater().inflate(R.layout.activity_details, fragment.getView(), false);
+
+                    ImageView image = fragment.getView().findViewById(R.id.image);
+                    image.setImageResource(event.getPlaceImageId());
+                    image.setVisibility(View.VISIBLE);
+
                     TextView name = (TextView) fragment.getView().findViewById(R.id.name);
                     name.setText(event.getPlaceName());
+
+                    TextView description = fragment.getView().findViewById(R.id.description);
+                    description.setText(event.getPlaceDescription());
+
+                    LinearLayout additionalSection = fragment.getView().findViewById(R.id.additional);
+                    additionalSection.removeAllViewsInLayout();
+
+                    Date eventStartDate = event.getEventStartDate();
+                    Date eventEndDate = event.getEventEndDate();
+
+                    if ( eventStartDate != null && eventEndDate!= null) {
+                        if (eventStartDate == eventEndDate) {
+                            String text = formatedDate(eventStartDate);
+                            addInTextView(additionalSection, "Date:", text);
+                        } else {
+                            String text = formatedDate(eventStartDate)+" - "+formatedDate(eventEndDate);
+                            addInTextView(additionalSection, "Date:", text);
+                        }
+                    }
+
+                    Contact contactInfo = event.getPlaceContactInfo();
+                    LinearLayout contactSection = fragment.getView().findViewById(R.id.contact);
+                    contactSection.removeAllViewsInLayout();
+
+                    TextView title =  fragment.getView().findViewById(R.id.contact_header);
+                    title.setVisibility(View.VISIBLE);
+
+                    addInTextView(contactSection, "Address:",contactInfo.getPlaceAddress());
+
+                    if (contactInfo.hasPhoneSet()) {
+                        addInTextView(contactSection, "Phone:",contactInfo.getPlacePhone());
+                    }
+                    if (contactInfo.hasWebSet()) {
+                        addInTextView(contactSection, "Web:",contactInfo.getPlaceWeb());
+                    }
+
                 } else {
                     Intent intent = new Intent(getActivity().getApplicationContext(),
                             DetailsActivity.class);
@@ -102,4 +147,18 @@ public class EventsFragment extends Fragment {
             return false;
         }
     }
+
+    public void addInTextView(ViewGroup parent, String label, String text) {
+        //LinearLayout.LayoutParams attributes = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        TextView textView = new TextView(getContext());
+        textView.setText(label+" "+text);
+        parent.addView(textView);
+    }
+
+    public String formatedDate(Date date) {
+        Date mDate = null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        return dateFormat.format(date);
+    }
+
 }

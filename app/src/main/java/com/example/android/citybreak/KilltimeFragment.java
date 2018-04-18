@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,7 +36,7 @@ public class KilltimeFragment extends Fragment {
 
         // Create the ArrayList of attractions
         final ArrayList<Killtime> killTime = new ArrayList<Killtime>();
-        // Data from https://www.facebook.com/restaurantlivada/
+        // Data from https://www.facebook.com/killtimelivada/
         killTime.add(new Killtime("Lasertag","Having fun hunting down your friends with a gun.", R.drawable.livada, new Contact("Traian Vuia street nr. 208"), new Hours(10,00,23,00), "entertainment"));
 
         // Create the adapter for attractions
@@ -48,20 +50,54 @@ public class KilltimeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 KilltimeAdapter eventAdapter = (KilltimeAdapter) parent.getAdapter();
-                Killtime event = eventAdapter.getItem(position);
+                Killtime killtime = eventAdapter.getItem(position);
                 DetailsFragment fragment = (DetailsFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.detailFragment);
                 if (fragment != null && showInSplitScreen(parent.getRootView())) {
+                    // Inflate the layout for this fragment
+                    // View rootView = fragment.getLayoutInflater().inflate(R.layout.activity_details, fragment.getView(), false);
+
+                    ImageView image = fragment.getView().findViewById(R.id.image);
+                    image.setImageResource(killtime.getPlaceImageId());
+                    image.setVisibility(View.VISIBLE);
+
                     TextView name = (TextView) fragment.getView().findViewById(R.id.name);
-                    name.setText(event.getPlaceName());
+                    name.setText(killtime.getPlaceName());
+
+                    TextView description = fragment.getView().findViewById(R.id.description);
+                    description.setText(killtime.getPlaceDescription());
+
+                    LinearLayout additionalSection = fragment.getView().findViewById(R.id.additional);
+                    additionalSection.removeAllViewsInLayout();
+                    addInTextView(additionalSection, "Type:", killtime.getLocationType());
+
+                    Contact contactInfo = killtime.getPlaceContactInfo();
+                    LinearLayout contactSection = fragment.getView().findViewById(R.id.contact);
+                    contactSection.removeAllViewsInLayout();
+
+                    TextView title =  fragment.getView().findViewById(R.id.contact_header);
+                    title.setVisibility(View.VISIBLE);
+
+                    addInTextView(contactSection, "Address:",contactInfo.getPlaceAddress());
+
+                    if (contactInfo.hasPhoneSet()) {
+                        addInTextView(contactSection, "Phone:",contactInfo.getPlacePhone());
+                    }
+                    if (contactInfo.hasWebSet()) {
+                        addInTextView(contactSection, "Web:",contactInfo.getPlaceWeb());
+                    }
+
+                    Hours hours = killtime.getOpenHours();
+                    addInTextView(contactSection, "Hours:", hours.getHoursString());
+
                 } else {
                     Intent intent = new Intent(getActivity().getApplicationContext(),
                             DetailsActivity.class);
-                    intent.putExtra("name", event.getPlaceName());
-                    intent.putExtra("description", event.getPlaceDescription());
-                    intent.putExtra("image", event.getPlaceImageId());
-                    intent.putExtra("contact", event.getPlaceContactInfo());
-                    intent.putExtra("hours", event.getOpenHours());
-                    intent.putExtra("type", event.getLocationType());
+                    intent.putExtra("name", killtime.getPlaceName());
+                    intent.putExtra("description", killtime.getPlaceDescription());
+                    intent.putExtra("image", killtime.getPlaceImageId());
+                    intent.putExtra("contact", killtime.getPlaceContactInfo());
+                    intent.putExtra("hours", killtime.getOpenHours());
+                    intent.putExtra("type", killtime.getLocationType());
                     startActivity(intent);
                 }
             }
@@ -89,4 +125,10 @@ public class KilltimeFragment extends Fragment {
         }
     }
 
+    public void addInTextView(ViewGroup parent, String label, String text) {
+        //LinearLayout.LayoutParams attributes = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        TextView textView = new TextView(getContext());
+        textView.setText(label+" "+text);
+        parent.addView(textView);
+    }
 }
