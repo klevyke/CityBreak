@@ -3,6 +3,7 @@ package com.example.android.citybreak;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
@@ -34,22 +35,73 @@ public class RestaurantsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Get the root view
         View rootView = inflater.inflate(R.layout.list, container, false);
+
+        // Get the resources
+        Resources res = getResources();
 
         // Create the ArrayList of attractions
         final ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
 
         // source: https://www.facebook.com/restaurantlivada/
-        restaurants.add(new Restaurant("Livada", "Beautiful restaurant with tree garden in the old town of the city", R.drawable.livada, new Contact("6 Clinici street", "+4 0722 111 115", "restaurantlivada.ro"), new Hours(10, 0, 23, 0), 4.10));
+        restaurants.add(new Restaurant(
+                res.getString(R.string.restaurant_livada),
+                res.getString(R.string.restaurant_livada_description),
+                R.drawable.livada,
+                new Contact(
+                        res.getString(R.string.restaurant_livada_address),
+                        res.getString(R.string.restaurant_livada_phone),
+                        res.getString(R.string.restaurant_livada_web)),
+                new Hours(10, 0, 23, 0),
+                4.10));
+
         // source: http://www.baracca.ro/eng/index.html
-        restaurants.add(new Restaurant("Baracca", "Baracca is the place where life is celebrated every moment!", R.drawable.baracca, new Contact("8A Napoca Street", "+4 0732 155 177", "baracca.ro"), new Hours(12, 0, 23, 0), 4.50));
+        restaurants.add(new Restaurant(
+                res.getString(R.string.restaurant_baracca),
+                res.getString(R.string.restaurant_baracca_description),
+                R.drawable.baracca,
+                new Contact(
+                        res.getString(R.string.restaurant_baracca_address),
+                        res.getString(R.string.restaurant_baracca_phone),
+                        res.getString(R.string.restaurant_baracca_web)),
+                new Hours(12, 0, 23, 0),
+                4.50));
+
         // source: https://www.facebook.com/Rhedey/ and rhedeycafe.ro
-        restaurants.add(new Restaurant("Rhédey", "The Rhédey House is a piece of history in itself. It is the history of the city’s main square.", R.drawable.rhedey, new Contact("Piata Unirii", "+4 0364 156 905", "rhedeycafe.ro"), new Hours(9, 0, 23, 0), 4.60));
+        restaurants.add(new Restaurant(
+                res.getString(R.string.restaurant_rhedey),
+                res.getString(R.string.restaurant_rhedey_description),
+                R.drawable.rhedey,
+                new Contact(
+                        res.getString(R.string.restaurant_rhedey_address),
+                        res.getString(R.string.restaurant_rhedey_phone),
+                        res.getString(R.string.restaurant_rhedey_web)),
+                new Hours(9, 0, 23, 0),
+                4.60));
         // source: https://www.facebook.com/BerariaKlausenBurger/
-        restaurants.add(new Restaurant("Klausen Burger", "Roof-top restaurant serving good food and craft beer.", R.drawable.klausenburger, new Contact("Ferdinand street 22", "+4 0372 717 552", "facebook.com/BerariaKlausenBurger/"), new Hours(10, 0, 2, 0), 4.40));
+        restaurants.add(new Restaurant(
+                res.getString(R.string.restaurant_klausenburger),
+                res.getString(R.string.restaurant_klausenburger_description),
+                R.drawable.klausenburger,
+                new Contact(
+                        res.getString(R.string.restaurant_klausenburger_address),
+                        res.getString(R.string.restaurant_klausenburger_phone),
+                        res.getString(R.string.restaurant_klausenburger_web)),
+                new Hours(10, 0, 2, 0),
+                4.40));
         // source: facebook.com/1568Bistro/
-        restaurants.add(new Restaurant("Bistro 1568", "A mix of traditional romanian, hungarian, saxon, jewish and armenian food.", R.drawable.bistro1568, new Contact("14 B-dul 21 Decembrie 1989", "+4 0770 163 152", "facebook.com/1568Bistro/"), new Hours(10, 0, 2, 0), 4.40));
+        restaurants.add(new Restaurant(
+                res.getString(R.string.restaurant_bistro1568),
+                res.getString(R.string.restaurant_bistro1568_description),
+                R.drawable.bistro1568,
+                new Contact(
+                        res.getString(R.string.restaurant_bistro1568_address),
+                        res.getString(R.string.restaurant_bistro1568_phone),
+                        res.getString(R.string.restaurant_bistro1568_web)),
+                new Hours(10, 0, 2, 0),
+                4.40));
 
         // Create the adapter for attractions
         RestaurantAdapter itemsAdapter = new RestaurantAdapter(getActivity(), restaurants);

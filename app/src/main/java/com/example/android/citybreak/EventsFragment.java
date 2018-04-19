@@ -39,8 +39,51 @@ public class EventsFragment extends Fragment {
 
         // Create the ArrayList of events
         final ArrayList<Event> events = new ArrayList<Event>();
-        // Data from https://www.facebook.com/eventlivada/
-        events.add(new Event("Untold","Biggest music festival in Central/Easter Europe with various type of electronic music.", R.drawable.livada, new Contact("Central Park - Cluj Arena"), dateFromString("2018.08.02"), dateFromString("2018.08.05")));
+        // source: tiff.ro
+        events.add(new Event(
+                getString(R.string.event_tiff),
+                getString(R.string.event_tiff_description),
+                R.drawable.tiff,
+                new Contact(getString(R.string.event_tiff_address), getString(R.string.event_tiff_web)),
+                dateFromString(getString(R.string.event_tiff_startdate)),
+                dateFromString(getString(R.string.event_tiff_enddate))
+        ));
+        // source: tiff.ro
+        events.add(new Event(
+                getString(R.string.event_untold),
+                getString(R.string.event_untold_description),
+                R.drawable.untold,
+                new Contact(getString(R.string.event_untold_address), getString(R.string.event_untold_web)),
+                dateFromString(getString(R.string.event_untold_startdate)),
+                dateFromString(getString(R.string.event_untold_enddate))
+        ));
+        // source: tiff.ro
+        events.add(new Event(
+                getString(R.string.event_electric),
+                getString(R.string.event_electric_description),
+                R.drawable.electric,
+                new Contact(getString(R.string.event_electric_address), getString(R.string.event_electric_web)),
+                dateFromString(getString(R.string.event_electric_startdate)),
+                dateFromString(getString(R.string.event_electric_enddate))
+        ));
+        // source: tiff.ro
+        events.add(new Event(
+                getString(R.string.event_hundays),
+                getString(R.string.event_hundays_description),
+                R.drawable.hundays,
+                new Contact(getString(R.string.event_hundays_address), getString(R.string.event_hundays_web)),
+                dateFromString(getString(R.string.event_hundays_startdate)),
+                dateFromString(getString(R.string.event_hundays_enddate))
+        ));
+        // source: tiff.ro
+        events.add(new Event(
+                getString(R.string.event_jazzinthepark),
+                getString(R.string.event_jazzinthepark_description),
+                R.drawable.jazzinthepark,
+                new Contact(getString(R.string.event_jazzinthepark_address), getString(R.string.event_jazzinthepark_web)),
+                dateFromString(getString(R.string.event_jazzinthepark_startdate)),
+                dateFromString(getString(R.string.event_jazzinthepark_enddate))
+        ));
 
         // Create the adapter for events
         EventAdapter itemsAdapter = new EventAdapter(getActivity(), events);

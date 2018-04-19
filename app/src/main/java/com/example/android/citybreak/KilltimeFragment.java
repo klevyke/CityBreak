@@ -2,6 +2,7 @@ package com.example.android.citybreak;
 
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
@@ -26,7 +27,7 @@ public class KilltimeFragment extends Fragment {
     public KilltimeFragment() {
         // Required empty public constructor
     }
-
+    // Get the resources
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,10 +35,56 @@ public class KilltimeFragment extends Fragment {
         // Get the root view
         View rootView = inflater.inflate(R.layout.list, container, false);
 
+        // Get the resources
+        Resources res = getResources();
+
         // Create the ArrayList of attractions
         final ArrayList<Killtime> killTime = new ArrayList<Killtime>();
+
+        //source: https://en.wikipedia.org/wiki/Cluj-Napoca_Central_Park
+        killTime.add(new Killtime(
+                getString(R.string.killtime_centralpark),
+                getString(R.string.killtime_centralpark_description),
+                R.drawable.centralpark,
+                new Contact(getString(R.string.killtime_centralpark_address)),
+                new Hours(0,0,24,00),
+                getString(R.string.type_recreation)));
+
+        // Data from lasertagcluj.ro
+        killTime.add(new Killtime(
+                getString(R.string.killtime_lasertag),
+                getString(R.string.killtime_lasertag_description),
+                R.drawable.lasertag,
+                new Contact(getString(R.string.killtime_lasertag_address), getString(R.string.killtime_lasertag_web)),
+                new Hours(10,0,24,00),
+                getString(R.string.type_entertainment)));
+
         // Data from https://www.facebook.com/killtimelivada/
-        killTime.add(new Killtime("Lasertag","Having fun hunting down your friends with a gun.", R.drawable.livada, new Contact("Traian Vuia street nr. 208"), new Hours(10,00,23,00), "entertainment"));
+        killTime.add(new Killtime(
+                getString(R.string.killtime_sportpark),
+                getString(R.string.killtime_sportpark_description),
+                R.drawable.sportpark,
+                new Contact(getString(R.string.killtime_sportpark_address)),
+                new Hours(10,0,24,00),
+                getString(R.string.type_sport)));
+
+        // Data from https://www.facebook.com/killtimelivada/
+        killTime.add(new Killtime(
+                getString(R.string.killtime_vivo),
+                getString(R.string.killtime_vivo_description),
+                R.drawable.vivo,
+                new Contact(getString(R.string.killtime_vivo_address)),
+                new Hours(10,0,24,00),
+                getString(R.string.type_shopping)));
+
+        // Data from https://www.facebook.com/killtimelivada/
+        killTime.add(new Killtime(
+                getString(R.string.killtime_iulius),
+                getString(R.string.killtime_iulius_description),
+                R.drawable.iulius,
+                new Contact(getString(R.string.killtime_iulius_address)),
+                new Hours(10,0,24,00),
+                getString(R.string.type_shopping)));
 
         // Create the adapter for attractions
         KilltimeAdapter itemsAdapter = new KilltimeAdapter(getActivity(), killTime);

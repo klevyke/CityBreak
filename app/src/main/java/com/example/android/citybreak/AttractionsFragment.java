@@ -1,6 +1,8 @@
 package com.example.android.citybreak;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
@@ -31,9 +33,49 @@ public class AttractionsFragment extends Fragment {
         // Get the root view
         View rootView = inflater.inflate(R.layout.list, container, false);
 
+        // Get the resources
+        Resources res = getResources();
+
         // Create the ArrayList of attractions
         final ArrayList<Attraction> attractions = new ArrayList<Attraction>();
-        attractions.add(new Attraction("Mathias Rex Satue", "This classified historic monument, conceived by János Fadrusz and opened in 1902, represents Matthias Corvinus.", R.drawable.matyaskiraly, new Contact("Unirii street 1"), "This is a long story of this attraction started in ancient days."));
+        attractions.add(new Attraction(
+                getString(R.string.attraction_mathiasrex),
+                getString(R.string.attraction_mathiasrex_description),
+                R.drawable.matyaskiraly,
+                new Contact( getString(R.string.attraction_mathiasrex_address)),
+                getString(R.string.attraction_mathiasrex_story)));
+
+        //source: https://en.wikipedia.org/wiki/Cluj-Napoca
+        attractions.add(new Attraction(
+                getString(R.string.attraction_mirrorstreet),
+                getString(R.string.attraction_mirrorstreet_description),
+                R.drawable.mirrorstreet,
+                new Contact( getString(R.string.attraction_mirrorstreet_address)),
+                getString(R.string.attraction_mirrorstreet_story)));
+
+        //source: https://ro.wikipedia.org/wiki/Bastionul_Croitorilor_din_Cluj-Napoca
+        attractions.add(new Attraction(
+                getString(R.string.attraction_tailorsbastion),
+                getString(R.string.attraction_tailorsbastion_description),
+                R.drawable.tailorsbastion,
+                new Contact( getString(R.string.attraction_tailorsbastion_address)),
+                getString(R.string.attraction_tailorsbastion_story)));
+
+        //source: https://en.wikipedia.org/wiki/St._Michael%27s_Church,_Cluj-Napoca
+        attractions.add(new Attraction(
+                getString(R.string.attraction_szentmihaly),
+                getString(R.string.attraction_szentmihaly_description),
+                R.drawable.szentmihaly,
+                new Contact( getString(R.string.attraction_szentmihaly_address)),
+                getString(R.string.attraction_szentmihaly_story)));
+
+        //source: https://en.wikipedia.org/wiki/Matthias_Corvinus_House
+        attractions.add(new Attraction(
+                getString(R.string.attraction_mathiasrexbirthplace),
+                getString(R.string.attraction_mathiasrexbirthplace_description),
+                R.drawable.mattiasresxbirthplace,
+                new Contact( getString(R.string.attraction_mathiasrexbirthplace_address)),
+                getString(R.string.attraction_mathiasrexbirthplace_story)));
 
         // Create the adapter for attractions
         AttractionAdapter itemsAdapter = new AttractionAdapter(getActivity(), attractions);
@@ -46,7 +88,7 @@ public class AttractionsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
                 AttractionAdapter attractionAdapter = (AttractionAdapter) parent.getAdapter();
-                Attraction attraction = attractionAdapter.getItem(position);
+                final Attraction attraction = attractionAdapter.getItem(position);
                 DetailsFragment fragment = (DetailsFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.detailFragment);
                 if (fragment != null && showInSplitScreen(parent.getRootView())) {
                     // Inflate the layout for this fragment
@@ -78,7 +120,17 @@ public class AttractionsFragment extends Fragment {
                         addInTextView(contactSection, "Web:",contactInfo.getPlaceWeb());
                     }
 
-                    addInTextView(contactSection, "\n\nThe story of the place:\n\n",attraction.getAttractionStory());
+                    TextView linkView = new TextView(getContext());
+                    linkView.setText("More about this ->");
+                    linkView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(attraction.getAttractionStory()));
+                            startActivity(i);
+                        }
+                    });
+                    contactSection.addView(linkView);
 
                 } else {
                     Intent intent = new Intent(getActivity().getApplicationContext(),

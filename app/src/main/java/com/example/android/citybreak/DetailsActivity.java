@@ -2,12 +2,14 @@ package com.example.android.citybreak;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -80,10 +82,21 @@ public class DetailsActivity extends AppCompatActivity {
             addInTextView(contactSection, "Hours:", hours.getHoursString());
         }
 
-        String attractionStory = extras.getString("story");
+        final String attractionStory = extras.getString("story");
 
         if ( attractionStory != null) {
-            addInTextView(contactSection, "\n\nThe story of this attraction: \n\n", attractionStory);
+            TextView linkView = new TextView(this);
+            linkView.setText(getString(R.string.more_text));
+            linkView.setGravity(Gravity.RIGHT);
+            linkView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(attractionStory));
+                    startActivity(i);
+                }
+            });
+            contactSection.addView(linkView);
         }
 
     }
