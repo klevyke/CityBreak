@@ -1,7 +1,5 @@
 package com.example.android.citybreak;
 
-import android.location.Address;
-
 /**
  * Created by Levy on 12.04.2018.
  */

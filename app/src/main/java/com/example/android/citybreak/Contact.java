@@ -20,21 +20,21 @@ public class Contact implements Parcelable {
      * @param phone place phone number
      * @param web place web address
      */
-    public Contact (String address, String phone, String web) {
+    public Contact (String address, String web, String phone) {
         contactAddress = address;
-        contactPhone = phone;
         contactWeb = web;
+        contactPhone = phone;
     }
 
     /**
      * Constructor without web address
      * @param address place address
-     * @param phone place phone number
+     * @param web place phone number
      */
-    public Contact (String address, String phone) {
+    public Contact (String address, String web) {;
         contactAddress = address;
-        contactPhone = phone;
-        contactWebSet = false;
+        contactWeb = web;
+        contactPhoneSet = false;
     }
 
     /**

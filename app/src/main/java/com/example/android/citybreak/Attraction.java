@@ -1,7 +1,5 @@
 package com.example.android.citybreak;
 
-import java.lang.reflect.Constructor;
-
 /**
  * Created by Levy on 12.04.2018.
  */

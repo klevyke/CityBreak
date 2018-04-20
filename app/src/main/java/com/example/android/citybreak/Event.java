@@ -1,7 +1,5 @@
 package com.example.android.citybreak;
 
-import android.icu.util.DateInterval;
-
 import java.util.Date;
 
 /**

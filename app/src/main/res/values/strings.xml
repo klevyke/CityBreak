@@ -15,6 +15,16 @@
     <string name="contact_header">Contact</string>
     <string name="hours_label">Hours: </string>
     <string name="address_label">Address: </string>
+    <string name="label_date">Date:</string>
+    <string name="label_type">Type:</string>
+    <string name="label_address">Address:</string>
+    <string name="label_phone">Phone:</string>
+    <string name="label_web">Web:</string>
+    <string name="label_hours">Hours:</string>
+    <string name="label_rating">Rating:</string>
+    <string name="date_interval">%s - %s</string>
+    <string name="label_and_text">%s %s</string>
+    <string name="date_pattern">yyyy.MM.dd</string>
     <string name="restaurant_livada">Livada</string>
     <string name="restaurant_livada_description">Beautiful restaurant with tree garden in the old town of the city</string>
     <string name="restaurant_livada_address">6 Clinici street</string>
@@ -25,7 +35,7 @@
     <string name="restaurant_baracca_address">8A Napoca Street</string>
     <string name="restaurant_baracca_phone">+4 0732 155 177</string>
     <string name="restaurant_baracca_web">baracca.ro</string>
-    <string name="restaurant_rhedey">Baracca</string>
+    <string name="restaurant_rhedey">Rhédey</string>
     <string name="restaurant_rhedey_description">The Rhédey House is a piece of history in itself. It is the history of the city’s main square.</string>
     <string name="restaurant_rhedey_address">Union Square</string>
     <string name="restaurant_rhedey_phone">+4 0364 156 905</string>
@@ -103,7 +113,8 @@
     <string name="killtime_centralpark_address">Between George Cosbuc and Arany Janos Streets</string>
     <string name="killtime_sportpark">Sport Park</string>
     <string name="killtime_sportpark_description">Modern sport park with free access based on schedule.</string>
-    <string name="killtime_sportpark_address">Between George Cosbuc and Arany Janos Streets</string>
+    <string name="killtime_sportpark_address">Alexandru Vaida Voevod Street</string>
+    <string name="killtime_sportpark_web">complexsportivgheorgheni.ro</string>
     <string name="killtime_vivo">Vivo</string>
     <string name="killtime_vivo_description">Largest shopping center in Cluj. (former Polus)</string>
     <string name="killtime_vivo_address">Between George Cosbuc and Arany Janos Streets</string>
