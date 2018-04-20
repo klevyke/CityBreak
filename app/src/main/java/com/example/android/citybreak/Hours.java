@@ -1,9 +1,8 @@
 package com.example.android.citybreak;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.sql.Time;
 
 /**
  * Created by Levy on 12.04.2018.
@@ -29,8 +28,8 @@ public class Hours implements Parcelable {
         this.closingMinute = closingMinute;
     }
 
-    public String getHoursString () {
-        return openHour+":"+openMinute+" - "+closingHour+":"+closingMinute;
+    public String getHoursString (Context context) {
+        return context.getString(R.string.hours_pattern, String.format("%02d", openHour), String.format("%02d", openMinute), String.format("%02d",closingHour), String.format("%02d",closingMinute));
     }
 
     // Parcelable implementation generated on parcelablr.com

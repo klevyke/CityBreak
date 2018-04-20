@@ -76,7 +76,7 @@ public class CitybreakFragment extends Fragment {
 
         // Set the hours
         Hours hours = restaurant.getOpenHours();
-        addInTextView(additionalSection, getString(R.string.label_hours), hours.getHoursString());
+        addInTextView(additionalSection, getString(R.string.label_hours), hours.getHoursString(fragment.getContext()));
 
         addInTextView(additionalSection, getString(R.string.label_rating), String.valueOf(restaurant.getRestaurantRating()));
 
@@ -128,7 +128,7 @@ public class CitybreakFragment extends Fragment {
 
         // Set the hours
         Hours hours = killtime.getOpenHours();
-        addInTextView(additionalSection, getString(R.string.label_hours), hours.getHoursString());
+        addInTextView(additionalSection, getString(R.string.label_hours), hours.getHoursString(fragment.getContext()));
     }
 
     /**

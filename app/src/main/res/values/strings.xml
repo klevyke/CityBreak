@@ -25,6 +25,7 @@
     <string name="date_interval">%s - %s</string>
     <string name="label_and_text">%s %s</string>
     <string name="date_pattern">yyyy.MM.dd</string>
+    <string name="hours_pattern">%s:%s - %s:%s</string>
     <string name="restaurant_livada">Livada</string>
     <string name="restaurant_livada_description">Beautiful restaurant with tree garden in the old town of the city</string>
     <string name="restaurant_livada_address">6 Clinici street</string>

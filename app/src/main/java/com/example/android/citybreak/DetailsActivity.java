@@ -95,7 +95,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         // Add the hours with the label if set
         if ( hours != null) {
-            addInTextView(generalSection, getString(R.string.label_hours), hours.getHoursString());
+            addInTextView(generalSection, getString(R.string.label_hours), hours.getHoursString(this));
         }
 
         // Get the link to the story if set

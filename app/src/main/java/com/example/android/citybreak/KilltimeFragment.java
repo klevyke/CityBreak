@@ -38,7 +38,7 @@ public class KilltimeFragment extends CitybreakFragment {
                 getString(R.string.killtime_centralpark_description),
                 R.drawable.centralpark,
                 new Contact(getString(R.string.killtime_centralpark_address)),
-                new Hours(0,0,24,00),
+                new Hours(0,0,24,0),
                 getString(R.string.type_recreation))
         );
 
@@ -48,7 +48,7 @@ public class KilltimeFragment extends CitybreakFragment {
                 getString(R.string.killtime_lasertag_description),
                 R.drawable.lasertag,
                 new Contact(getString(R.string.killtime_lasertag_address), getString(R.string.killtime_lasertag_web)),
-                new Hours(10,0,24,00),
+                new Hours(10,0,24,0),
                 getString(R.string.type_entertainment))
         );
 
@@ -58,7 +58,7 @@ public class KilltimeFragment extends CitybreakFragment {
                 getString(R.string.killtime_sportpark_description),
                 R.drawable.sportpark,
                 new Contact(getString(R.string.killtime_sportpark_address)),
-                new Hours(10,0,24,00),
+                new Hours(10,0,24,0),
                 getString(R.string.type_sport))
         );
 
@@ -68,7 +68,7 @@ public class KilltimeFragment extends CitybreakFragment {
                 getString(R.string.killtime_vivo_description),
                 R.drawable.vivo,
                 new Contact(getString(R.string.killtime_vivo_address)),
-                new Hours(10,0,24,00),
+                new Hours(10,0,24,0),
                 getString(R.string.type_shopping))
         );
 
@@ -78,7 +78,7 @@ public class KilltimeFragment extends CitybreakFragment {
                 getString(R.string.killtime_iulius_description),
                 R.drawable.iulius,
                 new Contact(getString(R.string.killtime_iulius_address)),
-                new Hours(10,0,24,00),
+                new Hours(10,0,24,0),
                 getString(R.string.type_shopping))
         );
 
