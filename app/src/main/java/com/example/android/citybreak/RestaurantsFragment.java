@@ -26,71 +26,68 @@ public class RestaurantsFragment extends CitybreakFragment {
         // Get the root view
         View rootView = inflater.inflate(R.layout.list, container, false);
 
-        // Get the resources
-        Resources res = getResources();
-
         // Create the ArrayList of attractions
         final ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
 
         // source: https://www.facebook.com/restaurantlivada/
         restaurants.add(new Restaurant(
-                res.getString(R.string.restaurant_livada),
-                res.getString(R.string.restaurant_livada_description),
+                getString(R.string.restaurant_livada),
+                getString(R.string.restaurant_livada_description),
                 R.drawable.livada,
                 new Contact(
-                        res.getString(R.string.restaurant_livada_address),
-                        res.getString(R.string.restaurant_livada_web),
-                        res.getString(R.string.restaurant_livada_phone)),
+                        getString(R.string.restaurant_livada_address),
+                        getString(R.string.restaurant_livada_web),
+                        getString(R.string.restaurant_livada_phone)),
                 new Hours(10, 0, 23, 0),
                 4.10)
         );
 
         // source: http://www.baracca.ro/eng/index.html
         restaurants.add(new Restaurant(
-                res.getString(R.string.restaurant_baracca),
-                res.getString(R.string.restaurant_baracca_description),
+                getString(R.string.restaurant_baracca),
+                getString(R.string.restaurant_baracca_description),
                 R.drawable.baracca,
                 new Contact(
-                        res.getString(R.string.restaurant_baracca_address),
-                        res.getString(R.string.restaurant_baracca_web),
-                        res.getString(R.string.restaurant_baracca_phone)),
+                        getString(R.string.restaurant_baracca_address),
+                        getString(R.string.restaurant_baracca_web),
+                        getString(R.string.restaurant_baracca_phone)),
                 new Hours(12, 0, 23, 0),
                 4.50)
         );
 
         // source: https://www.facebook.com/Rhedey/ and rhedeycafe.ro
         restaurants.add(new Restaurant(
-                res.getString(R.string.restaurant_rhedey),
-                res.getString(R.string.restaurant_rhedey_description),
+                getString(R.string.restaurant_rhedey),
+                getString(R.string.restaurant_rhedey_description),
                 R.drawable.rhedey,
                 new Contact(
-                        res.getString(R.string.restaurant_rhedey_address),
-                        res.getString(R.string.restaurant_rhedey_web),
-                        res.getString(R.string.restaurant_rhedey_phone)),
+                        getString(R.string.restaurant_rhedey_address),
+                        getString(R.string.restaurant_rhedey_web),
+                        getString(R.string.restaurant_rhedey_phone)),
                 new Hours(9, 0, 23, 0),
                 4.60)
         );
         // source: https://www.facebook.com/BerariaKlausenBurger/
         restaurants.add(new Restaurant(
-                res.getString(R.string.restaurant_klausenburger),
-                res.getString(R.string.restaurant_klausenburger_description),
+                getString(R.string.restaurant_klausenburger),
+                getString(R.string.restaurant_klausenburger_description),
                 R.drawable.klausenburger,
                 new Contact(
-                        res.getString(R.string.restaurant_klausenburger_address),
-                        res.getString(R.string.restaurant_klausenburger_web),
-                        res.getString(R.string.restaurant_klausenburger_phone)),
+                        getString(R.string.restaurant_klausenburger_address),
+                        getString(R.string.restaurant_klausenburger_web),
+                        getString(R.string.restaurant_klausenburger_phone)),
                 new Hours(10, 0, 2, 0),
                 4.40)
         );
         // source: facebook.com/1568Bistro/
         restaurants.add(new Restaurant(
-                res.getString(R.string.restaurant_bistro1568),
-                res.getString(R.string.restaurant_bistro1568_description),
+                getString(R.string.restaurant_bistro1568),
+                getString(R.string.restaurant_bistro1568_description),
                 R.drawable.bistro1568,
                 new Contact(
-                        res.getString(R.string.restaurant_bistro1568_address),
-                        res.getString(R.string.restaurant_bistro1568_web),
-                        res.getString(R.string.restaurant_bistro1568_phone)
+                        getString(R.string.restaurant_bistro1568_address),
+                        getString(R.string.restaurant_bistro1568_web),
+                        getString(R.string.restaurant_bistro1568_phone)
                         ),
                 new Hours(10, 0, 2, 0),
                 4.40)

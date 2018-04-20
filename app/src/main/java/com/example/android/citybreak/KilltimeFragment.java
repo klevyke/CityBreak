@@ -26,9 +26,6 @@ public class KilltimeFragment extends CitybreakFragment {
         // Get the root view
         View rootView = inflater.inflate(R.layout.list, container, false);
 
-        // Get the resources
-        Resources res = getResources();
-
         // Create the ArrayList of attractions
         final ArrayList<Killtime> killTime = new ArrayList<Killtime>();
 
