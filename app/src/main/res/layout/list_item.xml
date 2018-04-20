@@ -29,7 +29,9 @@
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small_margin"/>
+            style="@style/list_text"
+            android:layout_marginLeft="@dimen/small_margin"
+            android:layout_marginRight="@dimen/small_margin" />
     </LinearLayout>
 
 </LinearLayout>
